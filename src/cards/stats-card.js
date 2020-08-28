@@ -66,7 +66,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     text_color,
     bg_color,
     theme = "default",
-    use_username_in_title = false,
+    useUsernameInTitle = false,
   } = options;
 
   const lheight = parseInt(line_height, 10);
@@ -174,7 +174,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   };
 
   const card = new Card({
-    title: createTitle(name, username, use_username_in_title),
+    title: createTitle(name, username, useUsernameInTitle),
     width: 495,
     height,
     colors: {

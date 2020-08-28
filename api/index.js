@@ -31,6 +31,9 @@ module.exports = async (req, res) => {
   } = req.query;
   let stats;
 
+  const useUsernameInTitle = use_username_in_title != null;
+
+
   res.setHeader("Content-Type", "image/svg+xml");
 
   if (blacklist.includes(username)) {
@@ -52,7 +55,7 @@ module.exports = async (req, res) => {
 
     res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
 
-    if (use_username_in_title != null) {
+    if (useUsernameInTitle) {
       Object.assign(status, { username });
     }
 
@@ -70,7 +73,7 @@ module.exports = async (req, res) => {
         text_color,
         bg_color,
         theme,
-        use_username_in_title: use_username_in_title != null,
+        useUsernameInTitle,
       })
     );
   } catch (err) {
