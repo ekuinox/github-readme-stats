@@ -52,7 +52,7 @@ module.exports = async (req, res) => {
 
     res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
 
-    if (use_username_in_title) {
+    if (use_username_in_title != null) {
       Object.assign(status, { username });
     }
 
