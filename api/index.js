@@ -13,6 +13,7 @@ const blacklist = require("../src/common/blacklist");
 module.exports = async (req, res) => {
   const {
     username,
+    use_username_in_title,
     hide,
     hide_title,
     hide_border,
@@ -51,6 +52,10 @@ module.exports = async (req, res) => {
 
     res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
 
+    if (use_username_in_title) {
+      Object.assign(status, { username });
+    }
+
     return res.send(
       renderStatsCard(stats, {
         hide: parseArray(hide),
@@ -65,6 +70,7 @@ module.exports = async (req, res) => {
         text_color,
         bg_color,
         theme,
+        use_username_in_title: use_username_in_title != null,
       })
     );
   } catch (err) {

@@ -51,6 +51,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     totalPRs,
     contributedTo,
     rank,
+    username,
   } = stats;
   const {
     hide = [],
@@ -65,6 +66,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     text_color,
     bg_color,
     theme = "default",
+    use_username_in_title = false,
   } = options;
 
   const lheight = parseInt(line_height, 10);
@@ -165,9 +167,14 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     progress,
   });
 
-  const apostrophe = ["x", "s"].includes(name.slice(-1)) ? "" : "s";
+  const createTitle = (name, username, useUsername) => {
+    const name = useUsername ? username : name;
+    const apostrophe = ["x", "s"].includes(name.slice(-1)) ? "" : "s";
+    return `${encodeHTML(name)}'${apostrophe} GitHub Stats`;
+  };
+
   const card = new Card({
-    title: `${encodeHTML(name)}'${apostrophe} GitHub Stats`,
+    title: createTitle(name, username, use_username_in_title),
     width: 495,
     height,
     colors: {
