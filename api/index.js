@@ -33,7 +33,6 @@ module.exports = async (req, res) => {
 
   const useUsernameInTitle = use_username_in_title != null;
 
-
   res.setHeader("Content-Type", "image/svg+xml");
 
   if (blacklist.includes(username)) {
