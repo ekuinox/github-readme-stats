@@ -167,8 +167,8 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     progress,
   });
 
-  const createTitle = (name, username, useUsername) => {
-    const name = useUsername ? username : name;
+  const createTitle = (_name, username, useUsername) => {
+    const name = useUsername ? username : _name;
     const apostrophe = ["x", "s"].includes(name.slice(-1)) ? "" : "s";
     return `${encodeHTML(name)}'${apostrophe} GitHub Stats`;
   };
